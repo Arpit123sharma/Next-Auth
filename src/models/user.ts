@@ -2,7 +2,8 @@ import mongoose,{Schema,models,Document, Model} from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-export interface IUSER extends Document {
+export interface IUSER {
+    _id?:mongoose.Types.ObjectId;
     username:string,
     email:string,
     password:string,
@@ -15,6 +16,7 @@ export interface IUSER extends Document {
     comparePassword(enteredPassword:string):Promise<boolean>,
     generateToken():Promise<string>
 }
+
 const userSchema:Schema<IUSER> = new Schema({
     username:{
         type:String,
